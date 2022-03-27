@@ -17,33 +17,33 @@
 </template>
 
 <script>
-import axios from 'axios';
-import debounce from 'lodash.debounce';
+import axios from "axios";
+import debounce from "lodash.debounce";
 
-const api = 'https://images-api.nasa.gov/search?q=';
+const api = "https://images-api.nasa.gov/search?q=";
 
 export default {
-  name: 'SearchView',
+  name: "SearchView",
   data() {
     return {
-      searchValue: '',
+      searchValue: "",
       results: [],
     };
   },
   methods: {
-    handleInput: debounce(function() {
-      axios.get(`${api}${this.searchValue}&media_type=image`)
-        .then(response => {
+    handleInput: debounce(function () {
+      axios
+        .get(`${api}${this.searchValue}&media_type=image`)
+        .then((response) => {
           this.results = response.data.collection.items;
           console.log(this.results);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }, 500),
   },
-  components: {
-  },
+  components: {},
 };
 </script>
 
